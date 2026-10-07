@@ -25,7 +25,7 @@ CURRENCY = "USD"
 
 # United's cheapest fares are usually Basic Economy (no seat choice, no full-size
 # carry-on). Set True to track only Standard Economy and up.
-EXCLUDE_BASIC_ECONOMY = False
+EXCLUDE_BASIC_ECONOMY = True
 
 # All analysis is done in Chicago time.
 TIMEZONE = "America/Chicago"
