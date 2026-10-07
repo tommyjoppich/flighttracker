@@ -1,7 +1,0 @@
-checked_at_utc,checked_at_local,local_hour,local_weekday,days_to_departure,search,status,cheapest_price,cheapest_nonstop_price,num_options,cheapest_flight,error
-2026-10-07T17:34:02Z,2026-10-07 12:34,12,Wednesday,141,outbound,error,,,0,,No module named 'typing_extensions'
-2026-10-07T17:34:02Z,2026-10-07 12:34,12,Wednesday,141,return,error,,,0,,No module named 'typing_extensions'
-2026-10-07T17:34:02Z,2026-10-07 12:34,12,Wednesday,141,roundtrip,error,,,0,,No module named 'typing_extensions'
-2026-10-07T18:06:19Z,2026-10-07 13:06,13,Wednesday,141,outbound,ok,164,164,3,19:49→22:26 nonstop,
-2026-10-07T18:06:19Z,2026-10-07 13:06,13,Wednesday,141,return,ok,224,224,3,19:55→22:26 nonstop,
-2026-10-07T18:06:19Z,2026-10-07 13:06,13,Wednesday,141,roundtrip,ok,387,387,1,19:49→22:26 nonstop,
