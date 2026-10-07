@@ -35,4 +35,4 @@ STOP_AFTER = "2027-02-25"
 
 # Alert (GitHub issue -> email) when the round-trip price hits a new all-time low,
 # or drops below this target. Set to None to disable the target.
-TARGET_PRICE = None
+TARGET_PRICE = 300
