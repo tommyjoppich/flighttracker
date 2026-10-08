@@ -24,6 +24,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 import config
+import dashboard
 
 ROOT = Path(__file__).parent
 PRICES_CSV = ROOT / "data" / "prices.csv"
@@ -149,6 +150,10 @@ def main():
     if wide.empty or wide["best"].dropna().empty:
         lines.append("No successful price checks yet.")
         REPORT.write_text("\n".join(lines) + "\n")
+        try:
+            dashboard.build()
+        except Exception as e:
+            print(f"Dashboard not updated: {e}")
         return
 
     best = wide["best"].dropna()
@@ -168,16 +173,18 @@ def main():
     near_low = now_price <= low * 1.03
     hit_target = config.TARGET_PRICE is not None and now_price <= config.TARGET_PRICE
     if hit_target:
-        signal = f"🟢 **BUY** — at or below your target of {money(config.TARGET_PRICE)}."
+        sig = ("buy", "BUY", f"At or below your target of {money(config.TARGET_PRICE)}.")
     elif days_left <= 21:
-        signal = ("🟠 **BUY SOON** — inside 3 weeks of departure, domestic fares usually only go up."
-                  + (" And this is at/near the all-time low." if near_low else ""))
+        sig = ("soon", "BUY SOON", "Inside 3 weeks of departure, domestic fares usually only go up."
+               + (" And this is at/near the all-time low." if near_low else ""))
     elif now_price == low and len(best) > 1:
-        signal = "🟢 **BUY** — this is the lowest price the bot has ever seen."
+        sig = ("buy", "BUY", "This is the lowest price the bot has ever seen.")
     elif near_low:
-        signal = f"🟢 **GOOD PRICE** — within 3% of the all-time low ({money(low)})."
+        sig = ("good", "GOOD PRICE", f"Within 3% of the all-time low ({money(low)}).")
     else:
-        signal = f"⚪ **WAIT** — {pct:.0f}% of past checks were cheaper; low is {money(low)}."
+        sig = ("wait", "WAIT", f"{pct:.0f}% of past checks were cheaper; the low is {money(low)}.")
+    icon = {"buy": "🟢", "good": "🟢", "soon": "🟠", "wait": "⚪"}[sig[0]]
+    signal = f"{icon} **{sig[1]}** — {sig[2]}"
 
     lines += [
         "## Right now",
@@ -261,6 +268,11 @@ def main():
     lines.append("_Raw data: `data/prices.csv` (one row per search per hour) and `data/options.csv` (every United flight seen)._")
 
     REPORT.write_text("\n".join(l for l in lines if l is not None) + "\n")
+    try:
+        dashboard.build({"level": sig[0], "label": sig[1], "text": sig[2]},
+                        by_hour, by_day, days_tracked, MIN_DAYS_FOR_PATTERNS)
+    except Exception as e:  # never let the website break the price tracking
+        print(f"Dashboard not updated: {e}")
 
     # ---- alert
     reasons = []
