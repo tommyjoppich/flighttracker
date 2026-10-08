@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dallas Fare Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f5f2; --surface:#fcfcfb; --surface-2:#f0efeb; --line:#e4e3df;
+  --ink:#0b0b0b; --ink-2:#52514e; --ink-3:#8a8984;
+  --s1:#2a78d6; --s2:#eb6834;
+  --seq-0:#e3edf9; --seq-1:#b7d0f0; --seq-2:#7eaae3; --seq-3:#3f84d9; --seq-4:#1d5aa6; --seq-ink:#ffffff;
+  --none:#ecebe7;
+  --good:#0f7b3e; --good-bg:#e3f4ea; --warn:#9a5b00; --warn-bg:#fdf0d9; --neutral-bg:#ecebe7;
+  --up:#52514e;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121211; --surface:#1a1a19; --surface-2:#232322; --line:#2e2e2c;
+    --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#8f8e86;
+    --s1:#3987e5; --s2:#d95926;
+    --seq-0:#1f2b3a; --seq-1:#23426b; --seq-2:#2b5d9c; --seq-3:#3987e5; --seq-4:#8bb8f2; --seq-ink:#0b0b0b;
+    --none:#222221;
+    --good:#4cc27e; --good-bg:#16301f; --warn:#f0b24a; --warn-bg:#33270f; --neutral-bg:#262624;
+    --up:#c3c2b7;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121211; --surface:#1a1a19; --surface-2:#232322; --line:#2e2e2c;
+  --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#8f8e86;
+  --s1:#3987e5; --s2:#d95926;
+  --seq-0:#1f2b3a; --seq-1:#23426b; --seq-2:#2b5d9c; --seq-3:#3987e5; --seq-4:#8bb8f2; --seq-ink:#0b0b0b;
+  --none:#222221;
+  --good:#4cc27e; --good-bg:#16301f; --warn:#f0b24a; --warn-bg:#33270f; --neutral-bg:#262624;
+  --up:#c3c2b7;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 64px}
+header h1{font-size:26px;letter-spacing:-.02em;margin:0 0 4px;font-weight:700}
+header p{margin:0;color:var(--ink-2)}
+.signal{display:flex;gap:14px;align-items:center;border-radius:14px;padding:14px 18px;margin:20px 0 14px;border:1px solid var(--line)}
+.signal .badge{font-weight:700;font-size:13px;letter-spacing:.04em;padding:5px 10px;border-radius:999px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.signal.buy,.signal.good{background:var(--good-bg)} .signal.buy .badge,.signal.good .badge{background:var(--good);color:var(--bg)}
+.signal.soon{background:var(--warn-bg)} .signal.soon .badge{background:var(--warn);color:var(--bg)}
+.signal.wait{background:var(--neutral-bg)} .signal.wait .badge{background:var(--ink-2);color:var(--bg)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:0 0 20px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat .k{color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.stat .v{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat .s{color:var(--ink-2);font-size:13px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:20px}
+.card h2{font-size:16px;margin:0 0 4px;font-weight:600}
+.card .sub{color:var(--ink-2);font-size:13px;margin:0 0 14px}
+.row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer}
+.chip:hover{border-color:var(--ink-3)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--ink-2);font-size:13px;margin:4px 0 8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px}
+.legend i.dash{height:0;border-top:2px dashed var(--ink-3);width:16px}
+svg text{font-family:inherit}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:800px){.grid2{grid-template-columns:1fr}}
+.note{color:var(--ink-2);font-size:13px;background:var(--surface-2);border-radius:10px;padding:8px 12px;margin:0 0 12px}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-size:12px;color:var(--ink-3);font-weight:500;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th.num,td.num{text-align:right}
+td{padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tr:hover td{background:var(--surface-2)}
+.muted{color:var(--ink-3)}
+.err{color:var(--warn)}
+.best{font-weight:700}
+.heat{display:grid;gap:2px;font-size:11px;min-width:720px}
+.heat .h{color:var(--ink-3);text-align:center;padding:2px 0}
+.heat .n{color:var(--ink-2);padding-right:8px;white-space:nowrap;display:flex;align-items:center}
+.heat .c{border-radius:3px;height:22px}
+.heat .c.miss,.heatleg i.miss{background:transparent;box-shadow:inset 0 0 0 1px var(--line)}
+.heat .c.on{cursor:default}
+.heatleg{display:flex;align-items:center;gap:8px;color:var(--ink-2);font-size:12px;margin-top:10px;flex-wrap:wrap}
+.heatleg i{display:inline-block;width:22px;height:10px;border-radius:3px}
+.btn{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn:hover{border-color:var(--ink-3)}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:8px 10px;border-radius:8px;font-size:12px;line-height:1.45;max-width:260px;opacity:0;transition:opacity .08s;z-index:10;font-variant-numeric:tabular-nums}
+footer{color:var(--ink-3);font-size:12px;margin-top:24px}
+.empty{color:var(--ink-3);font-size:13px;padding:20px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Chicago ⇄ Dallas fare tracker</h1>
+    <p id="sub"></p>
+  </header>
+
+  <div class="signal" id="signal"></div>
+  <div class="stats" id="stats"></div>
+
+  <section class="card">
+    <div class="row">
+      <div><h2>Total trip price</h2><p class="sub">Cheapest United option at every check. Hover for details.</p></div>
+      <div class="chips" id="range" role="group" aria-label="Time range"></div>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div id="main"></div>
+  </section>
+
+  <section class="card">
+    <h2>Each leg on its own</h2>
+    <p class="sub">Cheapest one-way fare for each flight day, same time range as above.</p>
+    <div class="grid2"><div><div class="legend"><span><i style="background:var(--s1)"></i>Thu ORD→DFW</span></div><div id="legOut"></div></div>
+    <div><div class="legend"><span><i style="background:var(--s1)"></i>Sun DFW→ORD</span></div><div id="legRet"></div></div></div>
+  </section>
+
+  <section class="card">
+    <h2>Every check, by day and hour</h2>
+    <p class="sub">Each square is one hourly check (Chicago time). Stronger blue = cheaper trip. Empty squares are hours the bot didn't run.</p>
+    <div class="tablewrap"><div class="heat" id="heat"></div></div>
+    <div class="heatleg" id="heatleg"></div>
+  </section>
+
+  <section class="card">
+    <h2>When is it cheapest to buy?</h2>
+    <p class="sub">Average price at each hour / weekday compared with the typical price around it. Bars below the line are cheaper.</p>
+    <div id="patternNote"></div>
+    <div class="grid2"><div><div class="legend">By time of day</div><div id="byHour"></div></div>
+    <div><div class="legend">By day of week</div><div id="byDay"></div></div></div>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <div><h2>United flights right now</h2><p class="sub" id="flightsSub"></p></div>
+      <div class="chips" id="legTabs" role="group" aria-label="Search"></div>
+    </div>
+    <div class="tablewrap"><table id="nowTbl"></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Price history by flight</h2>
+    <p class="sub">Every United flight the bot has seen (one-way fares). Trend shows each day's lowest price.</p>
+    <div class="tablewrap"><table id="flightTbl"></table></div>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <div><h2>Check log</h2><p class="sub" id="logSub"></p></div>
+      <div class="chips"><button class="btn" id="dl">Download CSV</button></div>
+    </div>
+    <div class="tablewrap"><table id="logTbl"></table></div>
+    <div style="margin-top:12px"><button class="btn" id="more">Show all checks</button></div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const DATA = {"updated":"2026-10-08 11:19","trip":"Thu Feb 25 ORD\u2192DFW after 4 PM \u00b7 Sun Feb 28 DFW\u2192ORD after 4 PM","fare":"1 adult \u00b7 economy (no Basic Economy)","target":300,"depart_date":"2027-02-25","days_left":140,"signal":{"level":"buy","label":"BUY","text":"This is the lowest price the bot has ever seen."},"checks":[{"t":"2026-10-07 13:23","rt":487,"ow":488,"out":214,"ret":274,"best":487,"err":null},{"t":"2026-10-07 18:06","rt":487,"ow":488,"out":214,"ret":274,"best":487,"err":null},{"t":"2026-10-07 21:42","rt":487,"ow":507,"out":233,"ret":274,"best":487,"err":null},{"t":"2026-10-08 05:37","rt":506,"ow":507,"out":233,"ret":274,"best":506,"err":null},{"t":"2026-10-08 11:19","rt":506,"ow":484,"out":210,"ret":274,"best":484,"err":null}],"latest":{"outbound":[{"p":210,"d":"19:49","a":"22:26","s":0,"m":157},{"p":329,"d":"16:05","a":"21:42","s":1,"m":250}],"return":[{"p":274,"d":"19:55","a":"22:26","s":0,"m":151},{"p":297,"d":"16:05","a":"21:11","s":1,"m":249},{"p":335,"d":"17:45","a":"20:15","s":0,"m":150}],"roundtrip":[{"p":506,"d":"19:49","a":"22:26","s":0,"m":157}]},"flights":[{"leg":"outbound","d":"16:05","a":"21:42","s":1,"now":329,"low":297,"high":329,"seen":5,"series":[297,298]},{"leg":"outbound","d":"19:49","a":"22:26","s":0,"now":210,"low":210,"high":233,"seen":5,"series":[214,210]},{"leg":"outbound","d":"22:00","a":"12:43","s":1,"now":null,"low":356,"high":356,"seen":1,"series":[356]},{"leg":"return","d":"16:05","a":"21:11","s":1,"now":297,"low":284,"high":297,"seen":5,"series":[284,297]},{"leg":"return","d":"17:45","a":"20:15","s":0,"now":335,"low":294,"high":335,"seen":5,"series":[294,335]},{"leg":"return","d":"19:55","a":"22:26","s":0,"now":274,"low":274,"high":274,"seen":5,"series":[274,274]}],"by_hour":[{"k":"5 AM","v":11.0,"avg":506,"n":1},{"k":"11 AM","v":-11.0,"avg":484,"n":1},{"k":"1 PM","v":0.0,"avg":487,"n":1},{"k":"6 PM","v":0.0,"avg":487,"n":1},{"k":"9 PM","v":0.0,"avg":487,"n":1}],"by_day":[{"k":"Wed","v":-3.2,"avg":487,"n":3},{"k":"Thu","v":4.8,"avg":495,"n":2}],"patterns_ready":false,"days_tracked":0,"min_days":7};
+
+const $ = s => document.querySelector(s);
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money = v => v == null ? "—" : "$" + Math.round(v).toLocaleString();
+const parseT = s => { const [d,t] = s.split(" "); const [y,m,dd] = d.split("-").map(Number); const [h,mi] = t.split(":").map(Number); return new Date(y, m-1, dd, h, mi); };
+const fmtT = d => d.toLocaleString("en-US",{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+const fmtDay = d => d.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});
+const hhmm = s => { if (!s) return "—"; const [h,m] = s.split(":").map(Number); return `${(h%12)||12}:${String(m).padStart(2,"0")} ${h<12?"AM":"PM"}`; };
+const dur = m => `${Math.floor(m/60)}h ${m%60}m`;
+
+/* ---------- tooltip ---------- */
+const tip = $("#tip");
+function showTip(e, html){ tip.innerHTML = html; tip.style.opacity = 1; moveTip(e); }
+function moveTip(e){
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8);
+  const y = Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8);
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+function hideTip(){ tip.style.opacity = 0; }
+
+/* ---------- data prep ---------- */
+const checks = (DATA?.checks || []).map(c => ({...c, d: parseT(c.t)}));
+const good = checks.filter(c => c.best != null);
+let range = "all";
+
+function inRange(arr){
+  if (range === "all" || !arr.length) return arr;
+  const last = arr[arr.length-1].d.getTime();
+  const span = {"1d":864e5, "1w":7*864e5, "1m":30*864e5}[range];
+  return arr.filter(c => c.d.getTime() >= last - span);
+}
+
+/* ---------- header, signal, stats ---------- */
+function renderTop(){
+  $("#sub").textContent = `United · ${DATA.trip} · ${DATA.fare} · updated ${fmtT(parseT(DATA.updated))} (Chicago)`;
+  const s = DATA.signal;
+  const icon = s.level === "wait" ? "◦" : s.level === "soon" ? "!" : "✓";
+  $("#signal").className = "signal " + s.level;
+  $("#signal").innerHTML = `<span class="badge"><span aria-hidden="true">${icon}</span>${esc(s.label || s.level.toUpperCase())}</span><span>${esc(s.text)}</span>`;
+
+  if (!good.length){ $("#stats").innerHTML = ""; return; }
+  const last = good[good.length-1];
+  const prev = good.length > 1 ? good[good.length-2] : null;
+  const low = good.reduce((a,b) => b.best < a.best ? b : a);
+  const avg = good.reduce((a,b) => a + b.best, 0) / good.length;
+  const how = last.ow != null && (last.rt == null || last.ow < last.rt) ? "as two one-way tickets" : "as a round trip";
+  const delta = prev ? last.best - prev.best : 0;
+  const deltaTxt = !prev ? "First check" : delta === 0 ? "No change since last check" : `${delta < 0 ? "▼" : "▲"} ${money(Math.abs(delta))} since last check`;
+  const ran = checks.length, okc = good.length;
+  $("#stats").innerHTML = `
+    <div class="stat"><div class="k">Price now</div><div class="v">${money(last.best)}</div><div class="s">${how}</div></div>
+    <div class="stat"><div class="k">Change</div><div class="v" style="color:${delta<0?"var(--good)":"var(--ink)"}">${!prev ? "—" : (delta<0?"−":delta>0?"+":"") + money(Math.abs(delta))}</div><div class="s">${deltaTxt.replace(/^[▼▲] \S+ /,"")}</div></div>
+    <div class="stat"><div class="k">All-time low</div><div class="v">${money(low.best)}</div><div class="s">${fmtT(low.d)}</div></div>
+    <div class="stat"><div class="k">Average</div><div class="v">${money(avg)}</div><div class="s">High ${money(Math.max(...good.map(c=>c.best)))}</div></div>
+    <div class="stat"><div class="k">Target</div><div class="v">${money(DATA.target)}</div><div class="s">${DATA.target == null ? "Not set" : last.best <= DATA.target ? "Reached" : money(last.best - DATA.target) + " to go"}</div></div>
+    <div class="stat"><div class="k">Days to departure</div><div class="v">${DATA.days_left}</div><div class="s">${ran} checks run${ran!==okc?` · ${ran-okc} failed`:""}</div></div>`;
+}
+
+/* ---------- line chart ---------- */
+function niceTicks(lo, hi, n){
+  const span = hi - lo || 1, step0 = span / n, mag = 10 ** Math.floor(Math.log10(step0));
+  const step = [1,2,5,10].map(x => x*mag).find(x => span/x <= n) || mag*10;
+  const out = []; for (let v = Math.ceil(lo/step)*step; v <= hi + 1e-9; v += step) out.push(v);
+  return out;
+}
+function timeTicks(t0, t1, w){
+  const span = t1 - t0, maxN = Math.max(2, Math.floor(w / 90));
+  const opts = [36e5, 3*36e5, 6*36e5, 12*36e5, 864e5, 2*864e5, 7*864e5, 14*864e5, 30*864e5];
+  const step = opts.find(s => span / s <= maxN) || 60*864e5;
+  const start = new Date(t0); start.setMinutes(0,0,0);
+  if (step >= 864e5) start.setHours(0);
+  const out = []; for (let t = start.getTime(); t <= t1; t += step) if (t >= t0) out.push(t);
+  const daily = step >= 864e5;
+  return out.map(t => ({t, l: daily ? new Date(t).toLocaleDateString("en-US",{month:"short",day:"numeric"})
+    : new Date(t).toLocaleString("en-US",{hour:"numeric"}) }));
+}
+
+function lineChart(el, rows, series, opts = {}){
+  el.innerHTML = "";
+  const W = el.clientWidth || 600, H = opts.h || 300, m = {l:52, r:opts.endLabels?96:16, t:12, b:28};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const pts = rows.filter(r => series.some(s => r[s.k] != null));
+  if (pts.length === 0){ el.innerHTML = `<div class="empty">No successful checks in this range yet.</div>`; return; }
+  const vals = pts.flatMap(r => series.map(s => r[s.k]).filter(v => v != null));
+  const dLo = Math.min(...vals), dHi = Math.max(...vals);
+  // only stretch the axis to show the target if it's reasonably close to actual prices
+  const showTarget = opts.target != null && opts.target >= dLo - (dHi - dLo + 40) * 0.6 && opts.target <= dHi * 1.5;
+  if (showTarget) vals.push(opts.target);
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = Math.max((hi-lo)*0.12, 10); lo -= pad; hi += pad;
+  const t0 = pts[0].d.getTime(), t1 = pts[pts.length-1].d.getTime() || t0 + 1;
+  const X = t => m.l + (t1 === t0 ? iw/2 : (t - t0) / (t1 - t0) * iw);
+  const Y = v => m.t + (1 - (v - lo) / (hi - lo)) * ih;
+  const ink3 = css("--ink-3"), line = css("--line");
+  let svg = `<svg width="${W}" height="${H}" role="img" aria-label="${esc(opts.label||"Price chart")}">`;
+  for (const v of niceTicks(lo, hi, 5)) svg += `<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="${line}"/><text x="${m.l-8}" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="${ink3}">$${v}</text>`;
+  for (const tk of timeTicks(t0, t1, iw)) svg += `<text x="${X(tk.t)}" y="${H-8}" text-anchor="middle" font-size="11" fill="${ink3}">${tk.l}</text>`;
+  if (showTarget) svg += `<line x1="${m.l}" x2="${W-m.r}" y1="${Y(opts.target)}" y2="${Y(opts.target)}" stroke="${ink3}" stroke-dasharray="4 4"/><text x="${m.l+4}" y="${Y(opts.target)-5}" font-size="11" fill="${ink3}">Target ${money(opts.target)}</text>`;
+  const gap = 24 * 36e5;  // only break the line if the bot was down for a whole day
+  for (const s of series){
+    let d = "", prev = null;
+    for (const r of pts){
+      const v = r[s.k]; if (v == null) continue;   // skip a failed search, keep the line going
+      const cmd = (prev && r.d - prev.d <= gap) ? "L" : "M";
+      d += `${cmd}${X(r.d.getTime()).toFixed(1)},${Y(v).toFixed(1)}`; prev = r;
+    }
+    svg += `<path d="${d}" fill="none" stroke="${css(s.c)}" stroke-width="2" stroke-linejoin="round"/>`;
+    const lastP = [...pts].reverse().find(r => r[s.k] != null);
+    if (lastP){
+      svg += `<circle cx="${X(lastP.d.getTime())}" cy="${Y(lastP[s.k])}" r="3.5" fill="${css(s.c)}" stroke="${css("--surface")}" stroke-width="2"/>`;
+      if (opts.endLabels) svg += `<text x="${X(lastP.d.getTime())+8}" y="${Y(lastP[s.k])+4}" font-size="11" fill="${css("--ink-2")}">${esc(s.short)} ${money(lastP[s.k])}</text>`;
+    }
+  }
+  if (opts.markLow){
+    const low = pts.filter(r => r[opts.markLow] != null).reduce((a,b) => b[opts.markLow] < a[opts.markLow] ? b : a);
+    const x = X(low.d.getTime()), y = Y(low[opts.markLow]);
+    svg += `<circle cx="${x}" cy="${y}" r="5" fill="none" stroke="${css("--ink")}" stroke-width="1.5"/>`;
+    const right = x > m.l + iw*0.7;
+    svg += `<text x="${x + (right?-9:9)}" y="${y+16}" text-anchor="${right?"end":"start"}" font-size="11" fill="${css("--ink")}">Low ${money(low[opts.markLow])}</text>`;
+  }
+  svg += `<line id="xh" y1="${m.t}" y2="${m.t+ih}" stroke="${ink3}" opacity="0"/><g id="dots"></g>`;
+  svg += `<rect x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent" id="hit"/></svg>`;
+  el.innerHTML = svg;
+  const root = el.querySelector("svg"), xh = root.querySelector("#xh"), dots = root.querySelector("#dots");
+  root.querySelector("#hit").addEventListener("mousemove", e => {
+    const bx = root.getBoundingClientRect(), mx = e.clientX - bx.left;
+    let best = pts[0], bd = Infinity;
+    for (const r of pts){ const dd = Math.abs(X(r.d.getTime()) - mx); if (dd < bd){ bd = dd; best = r; } }
+    const x = X(best.d.getTime());
+    xh.setAttribute("x1", x); xh.setAttribute("x2", x); xh.setAttribute("opacity", 1);
+    dots.innerHTML = series.filter(s => best[s.k] != null).map(s => `<circle cx="${x}" cy="${Y(best[s.k])}" r="4" fill="${css(s.c)}" stroke="${css("--surface")}" stroke-width="2"/>`).join("");
+    showTip(e, `<b>${fmtT(best.d)}</b><br>` + series.map(s => `${esc(s.name)}: <b>${money(best[s.k])}</b>`).join("<br>") + (opts.tipExtra ? opts.tipExtra(best) : ""));
+  });
+  root.querySelector("#hit").addEventListener("mouseleave", () => { xh.setAttribute("opacity", 0); dots.innerHTML = ""; hideTip(); });
+}
+
+function renderCharts(){
+  const rows = inRange(checks);
+  const series = [{k:"rt", name:"Round trip", short:"RT", c:"--s1"}, {k:"ow", name:"Two one-ways", short:"1-ways", c:"--s2"}];
+  $("#legend").innerHTML = series.map(s => `<span><i style="background:var(${s.c})"></i>${s.name}</span>`).join("") + (DATA.target != null ? `<span><i class="dash"></i>Target ${money(DATA.target)}</span>` : "");
+  lineChart($("#main"), rows, series, {h: 320, target: DATA.target, endLabels: true, markLow: "best", label: "Total trip price over time",
+    tipExtra: r => `<br><span style="opacity:.75">Outbound ${money(r.out)} · Return ${money(r.ret)}</span>`});
+  lineChart($("#legOut"), rows, [{k:"out", name:"Thu ORD→DFW", c:"--s1"}], {h: 200, markLow: "out", label: "Outbound one-way price"});
+  lineChart($("#legRet"), rows, [{k:"ret", name:"Sun DFW→ORD", c:"--s1"}], {h: 200, markLow: "ret", label: "Return one-way price"});
+}
+function renderRange(){
+  const opts = [["1d","24 hours"],["1w","7 days"],["1m","30 days"],["all","All"]];
+  $("#range").innerHTML = opts.map(([v,l]) => `<button class="chip" data-r="${v}" aria-pressed="${v===range}">${l}</button>`).join("");
+  $("#range").onclick = e => { const b = e.target.closest("[data-r]"); if (!b) return; range = b.dataset.r; renderRange(); renderCharts(); };
+}
+
+/* ---------- heatmap ---------- */
+function renderHeat(){
+  const byDay = new Map();
+  for (const c of checks){
+    const k = c.t.slice(0,10);
+    if (!byDay.has(k)) byDay.set(k, Array.from({length:24}, () => null));
+    const h = c.d.getHours(), cur = byDay.get(k)[h];
+    if (!cur || (c.best != null && (cur.best == null || c.best < cur.best))) byDay.get(k)[h] = c;
+  }
+  const days = [...byDay.keys()].sort().reverse().slice(0, 45);
+  const vals = good.map(c => c.best).sort((a,b) => a-b);
+  const q = p => vals[Math.floor(p*(vals.length-1))];
+  const cuts = vals.length ? [q(.2), q(.4), q(.6), q(.8)] : [];
+  const lvl = v => { let i = cuts.findIndex(c => v <= c); if (i === -1) i = 4; return 4 - i; };
+  const heat = $("#heat");
+  heat.style.gridTemplateColumns = `110px repeat(24, minmax(22px,1fr))`;
+  let html = `<div></div>` + Array.from({length:24}, (_,h) => `<div class="h">${h%3===0 ? ((h%12)||12)+(h<12?"a":"p") : ""}</div>`).join("");
+  for (const k of days){
+    const [y,m,d] = k.split("-").map(Number);
+    html += `<div class="n">${fmtDay(new Date(y,m-1,d))}</div>`;
+    for (const c of byDay.get(k)){
+      if (!c) { html += `<div class="c miss" data-tip="No check this hour"></div>`; continue; }
+      if (c.best == null) { html += `<div class="c on" style="background:var(--none);outline:1px dashed var(--warn);outline-offset:-2px" data-tip="<b>${esc(fmtT(c.d))}</b><br>Check failed${c.err ? ": " + esc(c.err) : ""}"></div>`; continue; }
+      html += `<div class="c on" style="background:var(--seq-${lvl(c.best)})" data-tip="<b>${esc(fmtT(c.d))}</b><br>Trip: <b>${money(c.best)}</b><br>Round trip ${money(c.rt)} · One-ways ${money(c.ow)}"></div>`;
+    }
+  }
+  heat.innerHTML = days.length ? html : `<div class="empty">No checks yet.</div>`;
+  $("#heatleg").innerHTML = cuts.length ? `<span>Cheaper</span>${[4,3,2,1,0].map(i => `<i style="background:var(--seq-${i})"></i>`).join("")}<span>Pricier</span><span style="margin-left:12px"><i class="miss"></i> no check</span><span><i style="background:var(--none);outline:1px dashed var(--warn);outline-offset:-2px"></i> failed</span>` : "";
+}
+$("#heat").addEventListener("mousemove", e => { const c = e.target.closest("[data-tip]"); if (c) showTip(e, c.dataset.tip); else hideTip(); });
+$("#heat").addEventListener("mouseleave", hideTip);
+
+/* ---------- pattern bars ---------- */
+function barChart(el, rows, label){
+  el.innerHTML = "";
+  if (rows.length < 2){ el.innerHTML = `<div class="empty">Not enough data yet.</div>`; return; }
+  const W = el.clientWidth || 500, H = 220, m = {l:44, r:8, t:16, b:26};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const ext = Math.max(5, ...rows.map(r => Math.abs(r.v))) * 1.15;
+  const Y = v => m.t + (1 - (v + ext) / (2*ext)) * ih;
+  const bw = iw / rows.length, gapPx = Math.min(4, bw*0.25);
+  const minV = Math.min(...rows.map(r => r.v));
+  let svg = `<svg width="${W}" height="${H}" role="img" aria-label="${esc(label)}">`;
+  for (const v of niceTicks(-ext, ext, 4)) svg += `<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="${css("--line")}"/><text x="${m.l-6}" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="${css("--ink-3")}">${v<0?"−":v>0?"+":""}$${Math.abs(v)}</text>`;
+  rows.forEach((r, i) => {
+    const x = m.l + i*bw + gapPx/2, y0 = Y(0), y1 = Y(r.v), h = Math.max(1, Math.abs(y1 - y0));
+    const col = r.v === minV ? css("--seq-4") : r.v < 0 ? css("--seq-2") : css("--seq-0");
+    const rx = Math.min(4, (bw-gapPx)/2, h);
+    svg += `<rect x="${x}" y="${Math.min(y0,y1)}" width="${bw-gapPx}" height="${h}" rx="${rx}" fill="${col}"/>`;
+    svg += `<rect x="${m.l + i*bw}" y="${m.t}" width="${bw}" height="${ih}" fill="transparent" data-tip="<b>${esc(r.k)}</b><br>${r.v<0?"−":"+"}${money(Math.abs(r.v))} vs typical<br>Avg ${money(r.avg)} · ${r.n} checks"/>`;
+    const every = Math.ceil(rows.length / Math.max(1, Math.floor(iw/40)));
+    if (i % every === 0) svg += `<text x="${x + (bw-gapPx)/2}" y="${H-8}" text-anchor="middle" font-size="11" fill="${css("--ink-3")}">${esc(r.k)}</text>`;
+    if (r.v === minV) svg += `<text x="${x + (bw-gapPx)/2}" y="${Math.max(y0,y1)+13}" text-anchor="middle" font-size="11" font-weight="600" fill="${css("--ink")}">−$${Math.abs(Math.round(r.v))}</text>`;
+  });
+  svg += `<line x1="${m.l}" x2="${W-m.r}" y1="${Y(0)}" y2="${Y(0)}" stroke="${css("--ink-2")}"/></svg>`;
+  el.innerHTML = svg;
+  el.onmousemove = e => { const c = e.target.closest("[data-tip]"); if (c) showTip(e, c.dataset.tip); else hideTip(); };
+  el.onmouseleave = hideTip;
+}
+function renderPatterns(){
+  $("#patternNote").innerHTML = DATA.patterns_ready ? "" :
+    `<p class="note">Only ${DATA.days_tracked} day${DATA.days_tracked===1?"":"s"} of data so far. These patterns become meaningful after about ${DATA.min_days} days.</p>`;
+  barChart($("#byHour"), DATA.by_hour, "Price by hour of day vs typical");
+  barChart($("#byDay"), DATA.by_day, "Price by day of week vs typical");
+}
+
+/* ---------- flights now ---------- */
+let legTab = "outbound";
+function renderNow(){
+  const tabs = [["outbound","Thu ORD→DFW"],["return","Sun DFW→ORD"],["roundtrip","Round trip"]].filter(([k]) => DATA.latest[k]);
+  if (!tabs.find(t => t[0] === legTab) && tabs.length) legTab = tabs[0][0];
+  $("#legTabs").innerHTML = tabs.map(([k,l]) => `<button class="chip" data-k="${k}" aria-pressed="${k===legTab}">${l}</button>`).join("");
+  $("#legTabs").onclick = e => { const b = e.target.closest("[data-k]"); if (!b) return; legTab = b.dataset.k; renderNow(); };
+  $("#flightsSub").textContent = legTab === "roundtrip"
+    ? "Round-trip prices (both flights). Times shown are the Thursday outbound flight."
+    : `Every matching United flight at the latest check, cheapest first.`;
+  const rows = DATA.latest[legTab] || [];
+  $("#nowTbl").innerHTML = `<thead><tr><th>Departs</th><th>Arrives</th><th>Stops</th><th>Duration</th><th class="num">Price</th></tr></thead><tbody>` +
+    (rows.map((r,i) => `<tr><td>${hhmm(r.d)}</td><td>${hhmm(r.a)}</td><td>${r.s===0?"Nonstop":r.s+" stop"+(r.s>1?"s":"")}</td><td>${dur(r.m)}</td><td class="num ${i===0?"best":""}">${money(r.p)}</td></tr>`).join("")
+     || `<tr><td colspan="5" class="empty">No flight list yet.</td></tr>`) + "</tbody>";
+}
+
+/* ---------- per-flight history ---------- */
+function spark(series){
+  if (series.length < 2) return `<span class="muted">—</span>`;
+  const w = 100, h = 24, mn = Math.min(...series), mx = Math.max(...series), r = mx - mn || 1;
+  const p = series.map((v,i) => `${(i/(series.length-1)*w).toFixed(1)},${(h-3-(v-mn)/r*(h-6)).toFixed(1)}`);
+  const [lx, ly] = p[p.length-1].split(",");
+  return `<svg width="${w}" height="${h}" aria-hidden="true"><polyline fill="none" stroke="${css("--s1")}" stroke-width="1.6" points="${p.join(" ")}"/><circle cx="${lx}" cy="${ly}" r="2.5" fill="${css("--s1")}"/></svg>`;
+}
+function renderFlights(){
+  const f = DATA.flights;
+  $("#flightTbl").innerHTML = `<thead><tr><th>Flight</th><th>Departs</th><th>Arrives</th><th>Stops</th><th class="num">Now</th><th class="num">Low</th><th class="num">High</th><th>Trend (daily low)</th></tr></thead><tbody>` +
+    (f.map(r => `<tr><td>${r.leg==="outbound"?"Thu ORD→DFW":"Sun DFW→ORD"}</td><td>${hhmm(r.d)}</td><td>${hhmm(r.a)}</td><td>${r.s===0?"Nonstop":r.s+" stop"+(r.s>1?"s":"")}</td>
+      <td class="num">${r.now==null?`<span class="muted">not offered</span>`:"<b>"+money(r.now)+"</b>"}</td><td class="num">${money(r.low)}</td><td class="num">${money(r.high)}</td><td>${spark(r.series)}</td></tr>`).join("")
+     || `<tr><td colspan="8" class="empty">No flights recorded yet.</td></tr>`) + "</tbody>";
+}
+
+/* ---------- check log ---------- */
+let showAll = false;
+function renderLog(){
+  const okc = good.length, failed = checks.length - okc;
+  const first = checks[0]?.d, last = checks[checks.length-1]?.d;
+  const hours = first ? Math.max(1, Math.round((last - first) / 36e5) + 1) : 0;
+  $("#logSub").textContent = first ? `${checks.length} checks since ${fmtT(first)} · ${failed} failed · ${Math.max(0, hours - checks.length)} hours missed (bot didn't run)` : "No checks yet.";
+  const rows = [...checks].reverse(), shown = showAll ? rows : rows.slice(0, 48);
+  $("#logTbl").innerHTML = `<thead><tr><th>Checked (Chicago)</th><th class="num">Round trip</th><th class="num">Two one-ways</th><th class="num">Thu out</th><th class="num">Sun back</th><th class="num">Best</th><th>Status</th></tr></thead><tbody>` +
+    shown.map((c, i) => {
+      const prev = rows[i+1]; const ch = prev && prev.best != null && c.best != null ? c.best - prev.best : 0;
+      return `<tr><td>${fmtT(c.d)}</td><td class="num">${money(c.rt)}</td><td class="num">${money(c.ow)}</td><td class="num">${money(c.out)}</td><td class="num">${money(c.ret)}</td>
+      <td class="num best">${money(c.best)}${ch ? ` <span style="font-weight:500;color:${ch<0?"var(--good)":"var(--up)"}">${ch<0?"▼":"▲"}${Math.abs(ch)}</span>` : ""}</td>
+      <td>${c.best == null ? `<span class="err">Failed</span>` : c.err ? `<span class="muted">Partial</span>` : "OK"}</td></tr>`;
+    }).join("") + "</tbody>";
+  $("#more").hidden = rows.length <= 48;
+  $("#more").textContent = showAll ? "Show fewer" : `Show all ${rows.length} checks`;
+}
+$("#more").onclick = () => { showAll = !showAll; renderLog(); };
+$("#dl").onclick = () => {
+  const head = "checked_at_chicago,round_trip,two_one_ways,outbound,return,best,error\n";
+  const body = checks.map(c => [c.t, c.rt, c.ow, c.out, c.ret, c.best, c.err ? `"${c.err.replace(/"/g,'""')}"` : ""].map(v => v ?? "").join(",")).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([head + body], {type:"text/csv"}));
+  a.download = "dallas-fare-checks.csv"; a.click();
+};
+
+/* ---------- boot ---------- */
+function renderAll(){ renderTop(); renderRange(); renderCharts(); renderHeat(); renderPatterns(); renderNow(); renderFlights(); renderLog(); }
+if (!DATA){
+  document.querySelector(".wrap").innerHTML = "<h1>No data yet</h1><p>The first check hasn't finished. Come back after the bot runs.</p>";
+} else {
+  renderAll();
+  $("#foot").textContent = "Prices from Google Flights for United fares. Confirm in Chase Travel before booking.";
+  let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(() => { renderCharts(); renderPatterns(); }, 150); });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderAll);
+}
+</script>
+</body>
+</html>
