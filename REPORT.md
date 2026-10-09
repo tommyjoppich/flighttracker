@@ -1,7 +1,7 @@
 # ✈️ United ORD ⇄ DFW price tracker
 
 **Trip:** Thu Feb 25 2027 ORD→DFW after 4 PM · Sun Feb 28 2027 DFW→ORD after 4 PM · 1 adult, economy (no Basic Economy)
-_Updated 2026-10-08 23:17 Chicago time · 18 checks so far · all times Chicago_
+_Updated 2026-10-09 00:17 Chicago time · 19 checks so far · all times Chicago_
 
 ## Right now
 
@@ -9,13 +9,13 @@ _Updated 2026-10-08 23:17 Chicago time · 18 checks so far · all times Chicago_
 
 | | |
 |---|---|
-| **Cheapest way to book now** | **$444** as a two one-way tickets |
-| Round trip | $484 |
+| **Cheapest way to book now** | **$444** as a round trip |
+| Round trip | $444 |
 | Two one-ways (out + back) | $444 |
 | All-time low | $444 on Thu Oct 08, 10 PM |
 | All-time high | $506 |
-| Average | $480 |
-| Days until departure | 140 |
+| Average | $478 |
+| Days until departure | 139 |
 
 **Cheapest flights right now**
 
@@ -23,7 +23,7 @@ _Updated 2026-10-08 23:17 Chicago time · 18 checks so far · all times Chicago_
 |---|---|---|---|
 | Thu ORD→DFW | $197 | 19:49→22:26 nonstop | $197 |
 | Sun DFW→ORD | $247 | 19:55→22:26 nonstop | $247 |
-| Round trip (outbound shown) | $484 | 19:49→22:26 nonstop | $484 |
+| Round trip (outbound shown) | $444 | 19:49→22:26 nonstop | $444 |
 
 ## Price history
 
@@ -42,20 +42,22 @@ Cheapest hour so far: **10 PM**, about **$34 below** that day's average.
 
 > ⏳ Only 1 day(s) of data — patterns below are unreliable until about 7 days.
 
-Cheapest day so far: **Thursday**, about **$1 below** that week's average.
+Cheapest day so far: **Friday**, about **$34 below** that week's average.
 
 
 ![By weekday](charts/by_weekday.png)
 
 | Day | Avg price | vs. typical | Checks |
 |---|---|---|---|
-| Wednesday | $487 | +7 | 3 |
-| Thursday | $478 | -1 | 15 |
+| Wednesday | $487 | +9 | 3 |
+| Thursday | $478 | +0 | 15 |
+| Friday | $444 | -34 | 1 |
 
 ## Daily range (last 14 days)
 
 | Date | Low | High | Avg |
 |---|---|---|---|
+| Fri Oct 09 | $444 | $444 | $444 |
 | Thu Oct 08 | $444 | $506 | $478 |
 | Wed Oct 07 | $487 | $487 | $487 |
 
