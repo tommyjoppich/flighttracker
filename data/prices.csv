@@ -566,3 +566,6 @@ checked_at_utc,checked_at_local,local_hour,local_weekday,days_to_departure,searc
 2026-10-15T06:17:22Z,2026-10-15 01:17,1,Thursday,133,outbound,error,,,0,,'NoneType' object is not subscriptable
 2026-10-15T06:17:22Z,2026-10-15 01:17,1,Thursday,133,return,ok,257,257,3,19:55→22:26 nonstop,
 2026-10-15T06:17:22Z,2026-10-15 01:17,1,Thursday,133,roundtrip,ok,465,465,1,19:49→22:26 nonstop,
+2026-10-15T07:17:25Z,2026-10-15 02:17,2,Thursday,133,outbound,error,,,0,,'NoneType' object is not subscriptable
+2026-10-15T07:17:25Z,2026-10-15 02:17,2,Thursday,133,return,ok,257,257,3,19:55→22:26 nonstop,
+2026-10-15T07:17:25Z,2026-10-15 02:17,2,Thursday,133,roundtrip,ok,465,465,1,19:49→22:26 nonstop,
