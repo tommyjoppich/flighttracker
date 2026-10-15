@@ -554,3 +554,6 @@ checked_at_utc,checked_at_local,local_hour,local_weekday,days_to_departure,searc
 2026-10-15T02:17:22Z,2026-10-14 21:17,21,Wednesday,134,outbound,ok,189,189,2,19:49→22:26 nonstop,
 2026-10-15T02:17:22Z,2026-10-14 21:17,21,Wednesday,134,return,ok,247,247,3,19:55→22:26 nonstop,
 2026-10-15T02:17:22Z,2026-10-14 21:17,21,Wednesday,134,roundtrip,ok,435,435,1,19:49→22:26 nonstop,
+2026-10-15T03:17:26Z,2026-10-14 22:17,22,Wednesday,134,outbound,ok,189,189,2,19:49→22:26 nonstop,
+2026-10-15T03:17:26Z,2026-10-14 22:17,22,Wednesday,134,return,error,,,0,,no flights found; received error
+2026-10-15T03:17:26Z,2026-10-14 22:17,22,Wednesday,134,roundtrip,ok,435,435,1,19:49→22:26 nonstop,
