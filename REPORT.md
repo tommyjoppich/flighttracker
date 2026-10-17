@@ -1,7 +1,7 @@
 # ✈️ United ORD ⇄ DFW price tracker
 
 **Trip:** Thu Feb 25 2027 ORD→DFW after 4 PM · Sun Feb 28 2027 DFW→ORD after 4 PM · 1 adult, economy (no Basic Economy)
-_Updated 2026-10-17 03:17 Chicago time · 250 checks so far · all times Chicago_
+_Updated 2026-10-17 04:17 Chicago time · 251 checks so far · all times Chicago_
 
 ## Right now
 
