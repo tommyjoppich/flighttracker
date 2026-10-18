@@ -1,7 +1,7 @@
 # ✈️ United ORD ⇄ DFW price tracker
 
 **Trip:** Thu Feb 25 2027 ORD→DFW after 4 PM · Sun Feb 28 2027 DFW→ORD after 4 PM · 1 adult, economy (no Basic Economy)
-_Updated 2026-10-18 01:17 Chicago time · 279 checks so far · all times Chicago_
+_Updated 2026-10-18 02:17 Chicago time · 280 checks so far · all times Chicago_
 
 ## Right now
 
@@ -53,7 +53,7 @@ Cheapest day so far: **Tuesday**, about **$27 below** that week's average.
 | Thursday | $470 | +13 | 44 |
 | Friday | $455 | +1 | 58 |
 | Saturday | $483 | +29 | 58 |
-| Sunday | $440 | -7 | 32 |
+| Sunday | $441 | -6 | 33 |
 
 ## Daily range (last 14 days)
 
