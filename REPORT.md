@@ -1,20 +1,20 @@
 # ✈️ United ORD ⇄ DFW price tracker
 
 **Trip:** Thu Feb 25 2027 ORD→DFW after 4 PM · Sun Feb 28 2027 DFW→ORD after 4 PM · 1 adult, economy (no Basic Economy)
-_Updated 2026-10-21 05:17 Chicago time · 372 checks so far · all times Chicago_
+_Updated 2026-10-21 06:17 Chicago time · 373 checks so far · all times Chicago_
 
 ## Right now
 
-🟢 **BUY** — This is the lowest price the bot has ever seen.
+⚪ **WAIT** — 2% of past checks were cheaper; the low is $389.
 
 | | |
 |---|---|
-| **Cheapest way to book now** | **$389** as a two one-way tickets |
-| Round trip | $395 |
-| Two one-ways (out + back) | $389 |
+| **Cheapest way to book now** | **$408** as a round trip |
+| Round trip | $408 |
+| Two one-ways (out + back) | $408 |
 | All-time low | $389 on Wed Oct 21, 05 AM |
 | All-time high | $548 |
-| Average | $454 |
+| Average | $453 |
 | Days until departure | 127 |
 
 **Cheapest flights right now**
@@ -22,8 +22,8 @@ _Updated 2026-10-21 05:17 Chicago time · 372 checks so far · all times Chicago
 | Search | Price | Flight | Cheapest nonstop |
 |---|---|---|---|
 | Thu ORD→DFW | $194 | 19:49→22:26 nonstop | $194 |
-| Sun DFW→ORD | $195 | 19:55→22:26 nonstop | $195 |
-| Round trip (outbound shown) | $395 | 19:49→22:26 nonstop | $395 |
+| Sun DFW→ORD | $214 | 19:55→22:26 nonstop | $214 |
+| Round trip (outbound shown) | $408 | 19:49→22:26 nonstop | $408 |
 
 ## Price history
 
@@ -49,7 +49,7 @@ Cheapest day so far: **Wednesday**, about **$26 below** that week's average.
 |---|---|---|---|
 | Monday | $448 | +1 | 54 |
 | Tuesday | $421 | -25 | 57 |
-| Wednesday | $432 | -26 | 39 |
+| Wednesday | $431 | -26 | 40 |
 | Thursday | $470 | +11 | 44 |
 | Friday | $455 | -1 | 58 |
 | Saturday | $483 | +28 | 58 |
@@ -59,7 +59,7 @@ Cheapest day so far: **Wednesday**, about **$26 below** that week's average.
 
 | Date | Low | High | Avg |
 |---|---|---|---|
-| Wed Oct 21 | $389 | $395 | $393 |
+| Wed Oct 21 | $389 | $408 | $395 |
 | Tue Oct 20 | $395 | $410 | $409 |
 | Mon Oct 19 | $410 | $488 | $460 |
 | Sun Oct 18 | $488 | $488 | $488 |
