@@ -1,29 +1,29 @@
 # ✈️ United ORD ⇄ DFW price tracker
 
 **Trip:** Thu Feb 25 2027 ORD→DFW after 4 PM · Sun Feb 28 2027 DFW→ORD after 4 PM · 1 adult, economy (no Basic Economy)
-_Updated 2026-10-22 23:52 Chicago time · 422 checks so far · all times Chicago_
+_Updated 2026-10-23 00:17 Chicago time · 423 checks so far · all times Chicago_
 
 ## Right now
 
-⚪ **WAIT** — 2% of past checks were cheaper; the low is $389.
+⚪ **WAIT** — 82% of past checks were cheaper; the low is $389.
 
 | | |
 |---|---|
-| **Cheapest way to book now** | **$408** as a round trip |
-| Round trip | $408 |
-| Two one-ways (out + back) | $408 |
+| **Cheapest way to book now** | **$488** as a round trip |
+| Round trip | $488 |
+| Two one-ways (out + back) | $489 |
 | All-time low | $389 on Wed Oct 21, 05 AM |
 | All-time high | $548 |
 | Average | $448 |
-| Days until departure | 126 |
+| Days until departure | 125 |
 
 **Cheapest flights right now**
 
 | Search | Price | Flight | Cheapest nonstop |
 |---|---|---|---|
-| Thu ORD→DFW | $194 | 20:09→23:02 nonstop | $194 |
-| Sun DFW→ORD | $214 | 19:53→22:26 nonstop | $214 |
-| Round trip (outbound shown) | $408 | 19:49→22:26 nonstop | $408 |
+| Thu ORD→DFW | $205 | 20:09→23:02 nonstop | $205 |
+| Sun DFW→ORD | $284 | 19:53→22:26 nonstop | $284 |
+| Round trip (outbound shown) | $488 | 19:49→22:26 nonstop | $488 |
 
 ## Price history
 
@@ -40,7 +40,7 @@ Cheapest hour so far: **10 PM**, about **$8 below** that day's average.
 ## Best day of the week
 
 
-Cheapest day so far: **Tuesday**, about **$20 below** that week's average.
+Cheapest day so far: **Tuesday**, about **$21 below** that week's average.
 
 
 ![By weekday](charts/by_weekday.png)
@@ -48,10 +48,10 @@ Cheapest day so far: **Tuesday**, about **$20 below** that week's average.
 | Day | Avg price | vs. typical | Checks |
 |---|---|---|---|
 | Monday | $448 | +6 | 54 |
-| Tuesday | $421 | -20 | 57 |
+| Tuesday | $421 | -21 | 57 |
 | Wednesday | $423 | -20 | 60 |
 | Thursday | $445 | +2 | 73 |
-| Friday | $455 | -1 | 58 |
+| Friday | $455 | +0 | 59 |
 | Saturday | $483 | +28 | 58 |
 | Sunday | $462 | +6 | 60 |
 
@@ -59,6 +59,7 @@ Cheapest day so far: **Tuesday**, about **$20 below** that week's average.
 
 | Date | Low | High | Avg |
 |---|---|---|---|
+| Fri Oct 23 | $488 | $488 | $488 |
 | Thu Oct 22 | $408 | $408 | $408 |
 | Wed Oct 21 | $389 | $408 | $404 |
 | Tue Oct 20 | $395 | $410 | $409 |
@@ -72,6 +73,5 @@ Cheapest day so far: **Tuesday**, about **$20 below** that week's average.
 | Mon Oct 12 | $435 | $436 | $435 |
 | Sun Oct 11 | $435 | $435 | $435 |
 | Sat Oct 10 | $435 | $444 | $437 |
-| Fri Oct 09 | $444 | $444 | $444 |
 
 _Raw data: `data/prices.csv` (one row per search per hour) and `data/options.csv` (every United flight seen)._
