@@ -2603,3 +2603,7 @@ checked_at_utc,search,price,depart,arrive,stops,duration_min,airlines
 2026-10-24T17:17:23Z,return,257,19:53,22:26,0,153,United
 2026-10-24T17:17:23Z,return,283,17:39,20:12,0,153,United
 2026-10-24T17:17:23Z,roundtrip,453,20:09,23:02,0,173,United
+2026-10-24T18:17:25Z,outbound,197,20:09,23:02,0,173,United
+2026-10-24T18:17:25Z,outbound,321,21:28,08:47,1,269,United
+2026-10-24T18:17:25Z,return,257,19:53,22:26,0,153,United
+2026-10-24T18:17:25Z,return,283,17:39,20:12,0,153,United
