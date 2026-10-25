@@ -1,16 +1,16 @@
 # ✈️ United ORD ⇄ DFW price tracker
 
 **Trip:** Thu Feb 25 2027 ORD→DFW after 4 PM · Sun Feb 28 2027 DFW→ORD after 4 PM · 1 adult, economy (no Basic Economy)
-_Updated 2026-10-25 03:17 Chicago time · 486 checks so far · all times Chicago_
+_Updated 2026-10-25 04:17 Chicago time · 487 checks so far · all times Chicago_
 
 ## Right now
 
-⚪ **WAIT** — 67% of past checks were cheaper; the low is $389.
+⚪ **WAIT** — 79% of past checks were cheaper; the low is $389.
 
 | | |
 |---|---|
-| **Cheapest way to book now** | **$463** as a round trip |
-| Round trip | $463 |
+| **Cheapest way to book now** | **$476** as a round trip |
+| Round trip | $476 |
 | Two one-ways (out + back) | $514 |
 | All-time low | $389 on Wed Oct 21, 05 AM |
 | All-time high | $548 |
@@ -23,7 +23,7 @@ _Updated 2026-10-25 03:17 Chicago time · 486 checks so far · all times Chicago
 |---|---|---|---|
 | Thu ORD→DFW | $257 | 20:09→23:02 nonstop | $257 |
 | Sun DFW→ORD | $257 | 19:53→22:26 nonstop | $257 |
-| Round trip (outbound shown) | $463 | 20:09→23:02 nonstop | $463 |
+| Round trip (outbound shown) | $476 | 20:09→23:02 nonstop | $476 |
 
 ## Price history
 
@@ -40,7 +40,7 @@ Cheapest hour so far: **10 PM**, about **$9 below** that day's average.
 ## Best day of the week
 
 
-Cheapest day so far: **Tuesday**, about **$25 below** that week's average.
+Cheapest day so far: **Tuesday**, about **$26 below** that week's average.
 
 
 ![By weekday](charts/by_weekday.png)
@@ -48,18 +48,18 @@ Cheapest day so far: **Tuesday**, about **$25 below** that week's average.
 | Day | Avg price | vs. typical | Checks |
 |---|---|---|---|
 | Monday | $448 | +1 | 54 |
-| Tuesday | $421 | -25 | 57 |
+| Tuesday | $421 | -26 | 57 |
 | Wednesday | $423 | -25 | 60 |
 | Thursday | $445 | -2 | 73 |
 | Friday | $450 | +3 | 87 |
 | Saturday | $473 | +26 | 88 |
-| Sunday | $462 | +8 | 65 |
+| Sunday | $462 | +8 | 66 |
 
 ## Daily range (last 14 days)
 
 | Date | Low | High | Avg |
 |---|---|---|---|
-| Sun Oct 25 | $453 | $463 | $455 |
+| Sun Oct 25 | $453 | $476 | $458 |
 | Sat Oct 24 | $453 | $454 | $453 |
 | Fri Oct 23 | $407 | $488 | $440 |
 | Thu Oct 22 | $408 | $408 | $408 |
