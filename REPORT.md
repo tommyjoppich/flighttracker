@@ -1,17 +1,17 @@
 # ✈️ United ORD ⇄ DFW price tracker
 
 **Trip:** Thu Feb 25 2027 ORD→DFW after 4 PM · Sun Feb 28 2027 DFW→ORD after 4 PM · 1 adult, economy (no Basic Economy)
-_Updated 2026-10-29 22:17 Chicago time · 622 checks so far · all times Chicago_
+_Updated 2026-10-29 23:17 Chicago time · 623 checks so far · all times Chicago_
 
 ## Right now
 
-⚪ **WAIT** — 66% of past checks were cheaper; the low is $389.
+⚪ **WAIT** — 52% of past checks were cheaper; the low is $389.
 
 | | |
 |---|---|
-| **Cheapest way to book now** | **$471** as a two one-way tickets |
-| Round trip | $472 |
-| Two one-ways (out + back) | $471 |
+| **Cheapest way to book now** | **$463** as a round trip |
+| Round trip | $463 |
+| Two one-ways (out + back) | $464 |
 | All-time low | $389 on Wed Oct 21, 05 AM |
 | All-time high | $548 |
 | Average | $459 |
@@ -21,9 +21,9 @@ _Updated 2026-10-29 22:17 Chicago time · 622 checks so far · all times Chicago
 
 | Search | Price | Flight | Cheapest nonstop |
 |---|---|---|---|
-| Thu ORD→DFW | $215 | 20:09→23:02 nonstop | $215 |
+| Thu ORD→DFW | $208 | 20:09→23:02 nonstop | $208 |
 | Sun DFW→ORD | $256 | 17:20→22:59 1 stop | $257 |
-| Round trip (outbound shown) | $472 | 20:09→23:02 nonstop | $472 |
+| Round trip (outbound shown) | $463 | 20:09→23:02 nonstop | $463 |
 
 ## Price history
 
@@ -32,7 +32,7 @@ _Updated 2026-10-29 22:17 Chicago time · 622 checks so far · all times Chicago
 ## Best time of day
 
 
-Cheapest hour so far: **10 PM**, about **$7 below** that day's average.
+Cheapest hour so far: **11 PM**, about **$7 below** that day's average.
 
 
 ![By hour](charts/by_hour.png)
@@ -50,7 +50,7 @@ Cheapest day so far: **Wednesday**, about **$25 below** that week's average.
 | Monday | $469 | +3 | 81 |
 | Tuesday | $452 | -14 | 86 |
 | Wednesday | $441 | -25 | 88 |
-| Thursday | $455 | -8 | 100 |
+| Thursday | $455 | -8 | 101 |
 | Friday | $450 | -0 | 87 |
 | Saturday | $473 | +23 | 88 |
 | Sunday | $472 | +22 | 90 |
@@ -59,7 +59,7 @@ Cheapest day so far: **Wednesday**, about **$25 below** that week's average.
 
 | Date | Low | High | Avg |
 |---|---|---|---|
-| Thu Oct 29 | $468 | $513 | $482 |
+| Thu Oct 29 | $463 | $513 | $481 |
 | Wed Oct 28 | $468 | $513 | $479 |
 | Tue Oct 27 | $513 | $514 | $513 |
 | Mon Oct 26 | $513 | $513 | $513 |
