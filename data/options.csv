@@ -3378,3 +3378,12 @@ checked_at_utc,search,price,depart,arrive,stops,duration_min,airlines
 2026-10-30T15:17:20Z,return,294,17:39,20:12,0,153,United
 2026-10-30T15:17:20Z,roundtrip,513,20:09,23:02,0,173,United
 2026-10-30T15:17:20Z,roundtrip,594,21:28,08:47,1,269,United
+2026-10-30T16:17:24Z,outbound,258,20:09,23:02,0,173,United
+2026-10-30T16:17:24Z,outbound,295,21:53,10:44,1,295,United
+2026-10-30T16:17:24Z,outbound,342,21:28,08:47,1,269,United
+2026-10-30T16:17:24Z,return,256,17:20,22:59,1,247,United
+2026-10-30T16:17:24Z,return,256,19:39,00:45,1,237,United
+2026-10-30T16:17:24Z,return,258,19:53,22:26,0,153,United
+2026-10-30T16:17:24Z,return,294,17:39,20:12,0,153,United
+2026-10-30T16:17:24Z,roundtrip,513,20:09,23:02,0,173,United
+2026-10-30T16:17:24Z,roundtrip,594,21:28,08:47,1,269,United
