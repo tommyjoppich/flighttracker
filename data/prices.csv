@@ -2162,3 +2162,6 @@ checked_at_utc,checked_at_local,local_hour,local_weekday,days_to_departure,searc
 2026-11-02T16:17:24Z,2026-11-02 10:17,10,Monday,115,outbound,ok,242,242,1,20:09→23:02 nonstop,
 2026-11-02T16:17:24Z,2026-11-02 10:17,10,Monday,115,return,ok,256,259,4,17:20→22:59 1 stop,
 2026-11-02T16:17:24Z,2026-11-02 10:17,10,Monday,115,roundtrip,ok,497,497,1,20:09→23:02 nonstop,
+2026-11-02T17:17:27Z,2026-11-02 11:17,11,Monday,115,outbound,ok,242,242,1,20:09→23:02 nonstop,
+2026-11-02T17:17:27Z,2026-11-02 11:17,11,Monday,115,return,ok,256,259,4,17:20→22:59 1 stop,
+2026-11-02T17:17:27Z,2026-11-02 11:17,11,Monday,115,roundtrip,ok,497,497,1,20:09→23:02 nonstop,
