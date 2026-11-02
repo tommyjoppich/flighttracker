@@ -1,7 +1,7 @@
 # ✈️ United ORD ⇄ DFW price tracker
 
 **Trip:** Thu Feb 25 2027 ORD→DFW after 4 PM · Sun Feb 28 2027 DFW→ORD after 4 PM · 1 adult, economy (no Basic Economy)
-_Updated 2026-11-01 23:17 Chicago time · 708 checks so far · all times Chicago_
+_Updated 2026-11-02 00:08 Chicago time · 709 checks so far · all times Chicago_
 
 ## Right now
 
@@ -9,13 +9,13 @@ _Updated 2026-11-01 23:17 Chicago time · 708 checks so far · all times Chicago
 
 | | |
 |---|---|
-| **Cheapest way to book now** | **$498** as a round trip |
-| Round trip | $498 |
+| **Cheapest way to book now** | **$497** as a round trip |
+| Round trip | $497 |
 | Two one-ways (out + back) | $498 |
 | All-time low | $389 on Wed Oct 21, 05 AM |
 | All-time high | $548 |
 | Average | $463 |
-| Days until departure | 116 |
+| Days until departure | 115 |
 
 **Cheapest flights right now**
 
@@ -23,7 +23,7 @@ _Updated 2026-11-01 23:17 Chicago time · 708 checks so far · all times Chicago
 |---|---|---|---|
 | Thu ORD→DFW | $242 | 20:09→23:02 nonstop | $242 |
 | Sun DFW→ORD | $256 | 17:20→22:59 1 stop | $259 |
-| Round trip (outbound shown) | $498 | 20:09→23:02 nonstop | $498 |
+| Round trip (outbound shown) | $497 | 20:09→23:02 nonstop | $497 |
 
 ## Price history
 
@@ -47,7 +47,7 @@ Cheapest day so far: **Wednesday**, about **$25 below** that week's average.
 
 | Day | Avg price | vs. typical | Checks |
 |---|---|---|---|
-| Monday | $469 | +3 | 81 |
+| Monday | $470 | +3 | 82 |
 | Tuesday | $452 | -14 | 86 |
 | Wednesday | $441 | -25 | 88 |
 | Thursday | $455 | -8 | 101 |
@@ -59,6 +59,7 @@ Cheapest day so far: **Wednesday**, about **$25 below** that week's average.
 
 | Date | Low | High | Avg |
 |---|---|---|---|
+| Mon Nov 02 | $497 | $497 | $497 |
 | Sun Nov 01 | $498 | $499 | $498 |
 | Sat Oct 31 | $470 | $499 | $491 |
 | Fri Oct 30 | $463 | $513 | $497 |
@@ -72,6 +73,5 @@ Cheapest day so far: **Wednesday**, about **$25 below** that week's average.
 | Thu Oct 22 | $408 | $408 | $408 |
 | Wed Oct 21 | $389 | $408 | $404 |
 | Tue Oct 20 | $395 | $410 | $409 |
-| Mon Oct 19 | $410 | $488 | $460 |
 
 _Raw data: `data/prices.csv` (one row per search per hour) and `data/options.csv` (every United flight seen)._
