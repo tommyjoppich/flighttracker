@@ -1,7 +1,7 @@
 # ✈️ United ORD ⇄ DFW price tracker
 
 **Trip:** Thu Feb 25 2027 ORD→DFW after 4 PM · Sun Feb 28 2027 DFW→ORD after 4 PM · 1 adult, economy (no Basic Economy)
-_Updated 2026-11-23 23:17 Chicago time · 1307 checks so far · all times Chicago_
+_Updated 2026-11-24 00:17 Chicago time · 1308 checks so far · all times Chicago_
 
 ## Right now
 
@@ -11,17 +11,17 @@ _Updated 2026-11-23 23:17 Chicago time · 1307 checks so far · all times Chicag
 |---|---|
 | **Cheapest way to book now** | **$488** as a round trip |
 | Round trip | $488 |
-| Two one-ways (out + back) | $489 |
+| Two one-ways (out + back) | $506 |
 | All-time low | $389 on Wed Oct 21, 05 AM |
 | All-time high | $548 |
 | Average | $475 |
-| Days until departure | 94 |
+| Days until departure | 93 |
 
 **Cheapest flights right now**
 
 | Search | Price | Flight | Cheapest nonstop |
 |---|---|---|---|
-| Thu ORD→DFW | $214 | 20:09→23:02 nonstop | $214 |
+| Thu ORD→DFW | $231 | 20:09→23:02 nonstop | $231 |
 | Sun DFW→ORD | $275 | 19:53→22:26 nonstop | $275 |
 | Round trip (outbound shown) | $488 | 20:09→23:02 nonstop | $488 |
 
@@ -48,7 +48,7 @@ Cheapest day so far: **Wednesday**, about **$15 below** that week's average.
 | Day | Avg price | vs. typical | Checks |
 |---|---|---|---|
 | Monday | $483 | +4 | 178 |
-| Tuesday | $472 | -5 | 166 |
+| Tuesday | $472 | -5 | 167 |
 | Wednesday | $462 | -15 | 165 |
 | Thursday | $466 | -8 | 176 |
 | Friday | $472 | -0 | 191 |
@@ -59,6 +59,7 @@ Cheapest day so far: **Wednesday**, about **$15 below** that week's average.
 
 | Date | Low | High | Avg |
 |---|---|---|---|
+| Tue Nov 24 | $488 | $488 | $488 |
 | Mon Nov 23 | $488 | $489 | $488 |
 | Sun Nov 22 | $488 | $489 | $488 |
 | Sat Nov 21 | $488 | $489 | $488 |
@@ -72,6 +73,5 @@ Cheapest day so far: **Wednesday**, about **$15 below** that week's average.
 | Fri Nov 13 | $497 | $516 | $499 |
 | Thu Nov 12 | $487 | $498 | $490 |
 | Wed Nov 11 | $487 | $488 | $487 |
-| Tue Nov 10 | $487 | $498 | $494 |
 
 _Raw data: `data/prices.csv` (one row per search per hour) and `data/options.csv` (every United flight seen)._
