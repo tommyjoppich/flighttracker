@@ -6967,3 +6967,6 @@ checked_at_utc,search,price,depart,arrive,stops,duration_min,airlines
 2026-11-27T10:54:08Z,outbound,214,20:09,23:02,0,173,United
 2026-11-27T10:54:08Z,outbound,305,21:53,10:44,1,295,United
 2026-11-27T10:54:08Z,roundtrip,457,20:09,23:02,0,173,United
+2026-11-27T11:17:21Z,outbound,214,20:09,23:02,0,173,United
+2026-11-27T11:17:21Z,outbound,305,21:53,10:44,1,295,United
+2026-11-27T11:17:21Z,roundtrip,457,20:09,23:02,0,173,United
